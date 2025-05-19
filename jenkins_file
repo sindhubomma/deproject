@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh 'docker build -t my-nginx-app .'
+                    sh 'docker build -t my-nginx-app -f docker_file .'
                 }
             }
         }

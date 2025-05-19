@@ -1,11 +1,15 @@
+# Step 1: Use the official NGINX image
 FROM nginx:alpine
 
-# Remove default nginx static assets
-RUN rm -rf /usr/share/nginx/html/*
+# Step 2: Copy the static content (HTML, CSS, jQuery, etc.) to the NGINX directory
+# Copy all your project files (HTML, CSS, JS) into the NGINX web root directory
+COPY .// /usr/share/nginx/html
 
-# Copy static files from a remote URL
-COPY ./ /usr/share/nginx/html      #the source code is avil from git repo its
-                                                                                        #scm also in my git repo it’s the path .
+# Step 3: (Optional) You can replace the default NGINX configuration file if needed
+# COPY nginx.conf /etc/nginx/nginx.conf
+
+# Step 4: Expose port 80 (the default port for HTTP)
 EXPOSE 80
 
+# Step 5: Run NGINX (default command in the base image is already fine)
 CMD ["nginx", "-g", "daemon off;"]
